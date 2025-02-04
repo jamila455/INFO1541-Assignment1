@@ -121,9 +121,28 @@
 <p>When you are done writing your tests and fixing some code make sure to commit the code in Git. You should have several commits, say one for each employee test you are doing. You should also have different commit text for your test files vs. editing the object code that I provide to you.</p>
 <p>&nbsp;</p>
 <h3>Part 3 - Writing Annotations</h3>
+<p>Let's create some annotations to better mark our code for different files that we have. You can write these annotations in the same folder as the employee object's themselves. We won't worry about more organization than is already there.</p>
 <p>&nbsp;</p>
+<h4>Class Annotation</h4>
+<p>First create a new annotation called EmployeeType. This will have a String variable called "type". You can have the retention policy to be runtime.</p>
+<p>Then annotate the three employee classes and send the value "Hourly" "Salary" or "Commission" to their respectable files.</p>
+<p>&nbsp;</p>
+<h4>Method Annotation</h4>
+<p>Next create a method level annotation called WeeklyPayCalculator. This won't have any variables. You can have the retention policy to be runtime.</p>
+<p>Then annotate the three employee classes method that is calculateWeeklyPay().&nbsp;</p>
+<p>&nbsp;</p>
+<h4>Field Annotation</h4>
+<p>Lastly, create a field level annotation called PayRate. This will also have a String variable called "type". You can have the retention policy to be runtime as well.</p>
+<p>Then annotate the pay variable on each Hourly, Salary and Commission employee. You will need to send the "Hourly", "Salary", or "Commission" in the annotation as well.&nbsp;</p>
+<p>Note that the pay variable is named differently on each employee class but should be self explanatory which one it is.</p>
+<p>&nbsp;</p>
+<h4>Processing Annotations with Reflection</h4>
+<p>Now that we our annotations written let's write a "test" file to make sure that these annotations exist.</p>
+<p>First create a new file for "TestingAnnoations" that you will write a main method in that we can run. You can put this folder with the employee objects. Some more work would have to be done for having them in the Unit test folder.</p>
+<p>Next copy the code above from Part 2 that creates an hourly, salary and commission employee.</p>
+<p>Then using if statements check that each class is annotated with the Employee type. Simply have a variable that counts how many employee objects. If the annotation is present then ++ to the tracking variable. Print out a message like "You have # employee types"&nbsp; which should be 3.</p>
+<p>Lastly loop through each employee of hourly, salary and commission and check both the methods and fields. Once you find the field that is marked with PayRate print the value out in a format like :&nbsp; "Employee pay rate: $####".&nbsp; Then loop through the methods of the same class and find the method marked with WeeklyPayCalculator, invoke the method and print out the results that the method returns.</p>
 <p>When you are done writing your annotations and adding them to our code files you should make sure to "commit" those changes.</p>
-<h3><img src="https://github.com/lhartman2/INFO1541-Assignment1/blob/master/assets/images/Knowledge%20Check.png" width="72" height="72" alt="">Example Output</h3>
 <p></p>
 <h2><img src="https://github.com/lhartman2/INFO1541-Assignment1/blob/master/assets/images/ckeck.png" width="72" height="72" alt="">Submission</h2>
 <p>Throughout the different parts of the assignment above you should have made several varying commits in your code. Some for testing each employee, fixing the code in your employees, and writing the annotations/adding them in. This should not be seen as one big commit. This is part of the rubric with seeing a commit for each along with the actual fix of the code.</p>
