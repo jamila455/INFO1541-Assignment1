@@ -2,9 +2,14 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+@EmployeeType(type = "Salary")
 public class SalaryEmployeeTest {
 
-    // Create a fake employee to test with
+    @WeeklyPayCalculator
+    public double calculateWeeklyPay() {
+    }
+
+    @PayRate(type = "Salary")
     SalaryEmployee emp = new SalaryEmployee("Steve", "Rodgers", 3781, "Sales", "Manager", 64325);
 
     @Test

@@ -8,8 +8,15 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@EmployeeType(type = "Hourly")
 public class HourlyEmployeeTest {
 
+    @WeeklyPayCalculator
+    public double calculateWeeklyPay() {
+    }
+
+
+    @PayRate(type = "Hourly")
     private HourlyEmployee emp;  // we will reuse this test employee
 
     // This method runs before each test so we always start fresh

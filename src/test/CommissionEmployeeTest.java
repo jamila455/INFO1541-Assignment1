@@ -2,9 +2,16 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+@EmployeeType(type = "Commission")
 public class CommissionEmployeeTest {
 
-    // Fake employee to use for testing
+    @WeeklyPayCalculator
+    public double calculateWeeklyPay() {
+        return rate * sales;
+    }
+
+
+    @PayRate(type = "Commission")
     CommissionEmployee emp = new CommissionEmployee(
             "Clint", "Barton", 6847,
             "Sales", "Customer Representative", 0.0265);
