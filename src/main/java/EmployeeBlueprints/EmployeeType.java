@@ -1,5 +1,8 @@
 package EmployeeBlueprints;
 
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
 /**
  * Enumeration for the type of employee in the system.
  * @author Lucas Hartman
