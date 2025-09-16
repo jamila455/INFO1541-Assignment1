@@ -1,46 +1,139 @@
+
 package EmployeeObjects;
 
-import EmployeeAnnotations.EmployeeType;
 import EmployeeAnnotations.PayRate;
 import EmployeeAnnotations.WeeklyPayCalculator;
 import EmployeeBlueprints.Employee;
+import EmployeeBlueprints.EmployeeType;
 
-@EmployeeType(type = "Hourly")
-public class HourlyEmployee extends Employee {
-    @PayRate(type = "Hourly")
+/**
+ * This holds information of the hourly wage and hours worked for an hourly employee in the system.
+ * @author lhartman2
+ * @version 1.0.1
+ */
+
+@EmployeeAnnotations.EmployeeType(type="Hourly")
+public final class HourlyEmployee extends Employee {
+    @PayRate(type="Hourly")
     private double wage;
+    private double hoursWorked;
 
-    public HourlyEmployee(String tony, String stark, int i, String service, String leadServiceManager, double v) {
-
+    /**
+     * Main constructor that takes on employee information.
+     * @param fn String for the first name
+     * @param ln String for the last name
+     * @param en int for the employee number
+     * @param dept String for the department worked in
+     * @param job String for the job title
+     * @param w double for the wage/hourly pay
+     */
+    public HourlyEmployee(String fn, String ln, int en, String dept, String job, double w)
+    {
+        super(fn, ln, en, dept, job, EmployeeType.HOURLY);
+        wage = w;
+        hoursWorked = 0.0;
     }
+
+    /**
+     * adds 1 to hours worked by default
+     */
+    public void increaseHours()
+    {
+        hoursWorked += 1;
+    }
+
+    /**
+     * Add to the hours worked by the value sent. Checks to make sure value is positive.
+     * @param h double of hours to add
+     */
+    public void increaseHours(double h)
+    {
+        if (h > 0) {
+            hoursWorked += h;
+        }
+    }
+
+    /**
+     * Sends back the number of hours worked by employee
+     * @return double value of the hours worked.
+     */
+    public double getHoursWorked() {
+        return hoursWorked;
+    }
+
+    /**
+     * Sends back the hourly pay of the employee
+     * @return double for the wage
+     */
+    public double getWage() {
+        return wage;
+    }
+
+    /**
+     * Calculate the employees pay. If hours is greater than 40 then does overtime.
+     *
+     * @return a double for the weekly pay
+     */
 
     @WeeklyPayCalculator
-    public double calculateWeeklyPay() {
-
-        return 0;
-    }
-
     @Override
-    public void resetWeek() {
+    public double calculateWeeklyPay()
+    {
+        double pay = wage * hoursWorked;
+        if (hoursWorked > 40)
+        {
+            pay = wage * 40 + (wage*1.5) * (hoursWorked-40);
+        }
 
+        return pay;
     }
 
+    /**
+     * Increases the employee's wage by 5%
+     */
     @Override
-    public void annualRaise() {
-
+    public void annualRaise()
+    {
+        double raise = (double)Math.round(wage * .05 * 100)/100;
+        wage += raise;
     }
 
+    /**
+     * Calculates the annual bonus equivalent to 40 hours of work.
+     * @return double for holdiay bonus
+     */
     @Override
-    public double holidayBonus() {
-        return 0;
+    public double holidayBonus()
+    {
+        return 40 * wage;
     }
 
+    /**
+     * Sets the hours for the week back to 0
+     */
     @Override
-    public void setPay(double pay) {
-
+    public void resetWeek()
+    {
+        hoursWorked = 0.0;
     }
 
-    public void increaseHours(double hoursToAdd) {
+    /**
+     * Users the Employee toString and adds the wage and hours worked for printing out employee
+     * @return String of the employee
+     */
+    @Override
+    public String toString()
+    {
+        return super.toString() + "\nWage: " + currency.format(wage) +"\nHours Worked: " + hoursWorked;
+    }
 
+    /**
+     * Sets the pay to new value sent
+     * @param pay double for the new wage value
+     */
+    @Override
+    public void setPay(double pay)
+    {
+        wage = pay;
     }
 }
