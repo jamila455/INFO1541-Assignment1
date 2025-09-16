@@ -1,6 +1,7 @@
 package EmployeeObjects;
 
 
+import EmployeeAnnotations.WeeklyPayCalculator;
 import EmployeeBlueprints.Employee;
 import EmployeeBlueprints.EmployeeType;
 
@@ -9,8 +10,10 @@ import EmployeeBlueprints.EmployeeType;
  * @author lhartman2
  * @version 1.0.1
  */
+
+@EmployeeAnnotations.EmployeeType(type="Salary")
 public final class SalaryEmployee extends Employee {
-    
+
     private double salary;
 
     /**
@@ -32,6 +35,8 @@ public final class SalaryEmployee extends Employee {
      * Calculates the weekly pay of the employee. salary/52
      * @return double for the weekly pay
      */
+
+    @WeeklyPayCalculator
     @Override
     public double calculateWeeklyPay()
     {
@@ -45,7 +50,7 @@ public final class SalaryEmployee extends Employee {
     @Override
     public void annualRaise()
     {
-       salary += salary * .0625;
+        salary += salary * .0625;
     }
 
     /**
